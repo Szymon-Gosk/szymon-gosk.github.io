@@ -10,12 +10,19 @@ header, footer {
     width: 100%;
     height: 10vh;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     color: white;
     background-color: #740010;
     font-size: 120%;
+}
+
+header {
+    flex-direction: row;
+}
+
+footer {
+    flex-direction: column;
 }
 
 main {
@@ -63,5 +70,10 @@ main {
     width: 100%;
     height: 75%;
     background-color: blue;
+}
+
+#back-link {
+    text-decoration: underline;
+    color: white;
 }
 
