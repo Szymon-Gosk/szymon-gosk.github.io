@@ -18,7 +18,9 @@ header, footer {
 }
 
 header {
-    flex-direction: row;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 footer {
@@ -72,7 +74,12 @@ main {
 }
 
 #back-link {
-    text-decoration: underline;
+    text-decoration: none;
+    font-size: 15px;
+    text-transform: uppercase;
     color: white;
+    border: 2px solid white;
+    padding: 5px 20px;
+    border-radius: 50px;
 }
 
