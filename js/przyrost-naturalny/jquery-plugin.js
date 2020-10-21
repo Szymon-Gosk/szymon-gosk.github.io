@@ -5,6 +5,7 @@ $(document).ready(function() {
 
         // inicjalizacja zmiennych
         let inputs = [];
+        let years = [];
         let empty = 0;
 
         // Zebranie wartości z inputów
@@ -16,22 +17,33 @@ $(document).ready(function() {
             }
         });
 
+        $('.label').each(function () {
+            if($(this).html() !== "") {
+                years.push($(this).html());
+            }
+        });
+
         // Sprawdzenie czy są przynajmniej 3 lata TODO
         if(empty > 2) {
 
         }
 
-        // (100000, 2017)
-
         // zamiana stringów na inty
+        var values = {};
         inputs = inputs.map(x=>+x);
+        years = years.map(x=>+x);
 
-        let sum = 0;
-        for(let i = 0; i < inputs.length; i++) {
-            sum += inputs[i];
+        // TODO change not working
+        years.forEach(
+            (key, i) => {
+                if(inputs[i] !== undefined)
+                    values[key] = inputs[i]
+            }
+        );
+
+        for(let p in values) {
+            console.log (p, values[p])
         }
-
-        $('#wyniki-temp').text(sum);
 
     });
 
