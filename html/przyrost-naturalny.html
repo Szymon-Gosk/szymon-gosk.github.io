@@ -6,19 +6,32 @@
     <title>Przyrost Naturalny | Algorytmy Numeryczne</title>
     <link rel="stylesheet" href="../css/przyrost-naturalny.css">
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script async defer  src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="../js/przyrost-naturalny/jquery-plugin.js"></script>
 </head>
 <body>
 
     <header>
-        <a id="back-link" href="./../index.html">Powrót</a><span>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbspAlgorytmy Numeryczne&nbsp&nbsp&nbsp|&nbsp&nbsp&nbspGrupa 1.1</span>
+        <a id="back-link" href="./../index.html">Powrót</a>
+        <span>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbspAlgorytmy Numeryczne&nbsp&nbsp&nbsp|&nbsp&nbsp&nbspGrupa 1.1</span>
     </header>
 
     <main>
         <div id="d-1">
             <!--   Labele do danych    -->
             <div id="d-1-1">
-
+                <span>Podaj od 3 do 5 wartości populacji z poprzednich lat</span><br>
+                <label for="input-1">2015</label>
+                <input type="number" name="2015" id="input-1" value="" class="input"><br>
+                <label for="input-2">2016</label>
+                <input type="number" name="2016" id="input-2" value="" class="input"><br>
+                <label for="input-3">2017</label>
+                <input type="number" name="2017" id="input-3" value="" class="input"><br>
+                <label for="input-4">2018</label>
+                <input type="number" name="2018" id="input-4" value="" class="input"><br>
+                <label for="input-5">2019</label>
+                <input type="number" name="2019" id="input-5" value="" class="input"><br><br>
+                <input type="submit" id="submit-button" value="Zatwierdź">
             </div>
             <!--   Wczytywanie z pliku (może)    -->
             <div id="d-1-2">
@@ -28,7 +41,7 @@
         <div id="d-2">
             <!--   Wyniki    -->
             <div id="d-2-1">
-
+                <span id="wyniki-temp"></span>
             </div>
             <!--   Wykres (może)    -->
             <div id="d-2-2">
