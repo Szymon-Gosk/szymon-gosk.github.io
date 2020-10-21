@@ -30,14 +30,18 @@ $(document).ready(function() {
 
         // zamiana stringów na inty
         var values = {};
-        inputs = inputs.map(x=>+x);
-        years = years.map(x=>+x);
+        inputs = inputs.map(x => +x);
+        years = years.map(x => +x);
 
         // TODO change not working
         years.forEach(
             (key, i) => {
-                if(inputs[i] !== undefined)
+                if(inputs[i] !== undefined) {
                     values[key] = inputs[i]
+                } else {
+
+                }
+
             }
         );
 
