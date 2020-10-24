@@ -31,7 +31,7 @@ nav {
     grid-template-columns: 50% 50%;
     grid-template-rows: 50% 50%;
     column-gap: 5vw;
-    row-gap: 5vw;
+    row-gap: 5vh;
     margin-left: 5%;
 }
 
@@ -66,6 +66,7 @@ aside footer {
 
 
 .element {
+    width: 300px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
