@@ -74,13 +74,13 @@ aside footer {
     background-color: none;
 }
 
-#el1 {border: 5px solid #1CFFD9;}
+#el1 {border: 3px solid #1CFFD9;}
 
-#el2 {border: 5px solid #1CFF8E;}
+#el2 {border: 3px solid #1CFF8E;}
 
-#el3 {border: 5px solid #1CFF7D;}
+#el3 {border: 3px solid #1CFF7D;}
 
-#el4 {border: 5px solid #1CFF52;}
+#el4 {border: 3px solid #1CFF52;}
 
 .element:hover {
     transform: scale(1.1);
@@ -116,6 +116,6 @@ aside footer {
 }
 
 .s-name {
-    font-size: 30px;
+    font-size: 25px;
     font-style: italic;
 }
