@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+
+
     // przycisk 'Zatwierdź'
     $('#submit-button').click(function() {
 
@@ -9,17 +11,16 @@ $(document).ready(function() {
         let empty = 0;
 
         // Zebranie wartości z inputów
-        $('.input').each(function () {
-            if($(this).val() === "") {
-                empty += 1;
-            } else {
-                inputs.push($(this).val());
+        $('.input-y').each(function () {
+            if($(this).val() !== "") {
+                years.push($(this).val());
             }
+
         });
 
-        $('.label').each(function () {
-            if($(this).html() !== "") {
-                years.push($(this).html());
+        $('.input-v').each(function () {
+            if($(this).val() !== "") {
+                inputs.push($(this).val());
             }
         });
 
@@ -29,25 +30,78 @@ $(document).ready(function() {
         }
 
         // zamiana stringów na inty
-        var values = {};
+        let values = [];
         inputs = inputs.map(x => +x);
         years = years.map(x => +x);
 
-        // TODO change not working
-        years.forEach(
-            (key, i) => {
-                if(inputs[i] !== undefined) {
-                    values[key] = inputs[i]
-                } else {
-
-                }
-
-            }
-        );
-
-        for(let p in values) {
-            console.log (p, values[p])
+        for (let i = 0; i < inputs.length; i++) {
+            let temp = [];
+            temp[0] = years[i];
+            temp[1] = inputs[i];
+            values[i] = temp
         }
+
+        // values[X][0] - X-th year       (x)
+        // values[X][1] - X-th value      (y)
+        let N = values.length;
+        let b = [];
+
+        b[0] = values[0][1];
+
+        for(let k = 1; k <= N-1; k++) {
+
+            let sum = values[0][1];
+            let denominator = 1;
+
+            for(let i = 1; i <= k-1; i++) {
+                let product = 1;
+                for(let j = 0; j < i; j++) {
+                    product *= (values[k][0] - values[j][0]);
+                }
+                sum += b[i]*product;
+            }
+
+            for(let i = 0; i <= k-1; i++) {
+                denominator *= (values[k][0] - values[i][0]);
+            }
+
+            b[k] = (values[k][1] - sum)/denominator;
+        }
+
+        // Wielomian(y)
+
+        let polynomial = "P(x) = " + b[0];
+
+        for(let k = 1; k <= N-1; k++) {
+            if(b[k] < 0) {
+                polynomial = polynomial + " - " + Math.abs(b[k]);
+            } else {
+                polynomial = polynomial + " + " + b[k];
+            }
+            for(let i = 0; i <= k-1; i++) {
+                polynomial = polynomial + "(x - " + values[i][0] + ")";
+            }
+        }
+
+        $("#polynomial").html(polynomial);
+
+        // Wyliczenie
+
+        let P = b[0];
+        let x = parseInt($('#year-6').val());
+
+        for (let k = 1; k <= N - 1; k++) {
+            let ingredient = b[k];
+            for (let i = 0; i <= k - 1; i++) {
+                ingredient *= (x - values[i][0]);
+                polynomial = polynomial + "(x - " + values[i][0] + ")";
+            }
+            P += ingredient;
+        }
+
+        P = Math.round(P * 100) / 100;
+
+        $('#result').html(P);
 
     });
 

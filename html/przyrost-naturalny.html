@@ -23,16 +23,18 @@
             <!--   Labele do danych    -->
             <div id="d-1-1">
                 <span>Podaj od 3 do 5 wartości populacji z poprzednich lat</span><br>
-                <label class="label" for="input-1">2015</label>
-                <input type="number" name="2015" id="input-1" value="" class="input"><br>
-                <label class="label" for="input-2">2016</label>
-                <input type="number" name="2016" id="input-2" value="" class="input"><br>
-                <label class="label" for="input-3">2017</label>
-                <input type="number" name="2017" id="input-3" value="" class="input"><br>
-                <label class="label" for="input-4">2018</label>
-                <input type="number" name="2018" id="input-4" value="" class="input"><br>
-                <label class="label" for="input-5">2019</label>
-                <input type="number" name="2019" id="input-5" value="" class="input"><br><br>
+                <input type="number" name="year" id="year-1" value="2005" class="input-y">
+                <input type="number" name="value" id="value-1" value="6503" class="input-v"><br>
+                <input type="number" name="year" id="year-2" value="2010" class="input-y">
+                <input type="number" name="value" id="value-2" value="6894" class="input-v"><br>
+                <input type="number" name="year" id="year-3" value="2015" class="input-y">
+                <input type="number" name="value" id="value-3" value="7256" class="input-v"><br>
+                <input type="number" name="year" id="year-4" value="" class="input-y">
+                <input type="number" name="value" id="value-4" value="" class="input-v"><br>
+                <input type="number" name="year" id="year-5" value="" class="input-y">
+                <input type="number" name="value" id="value-5" value="" class="input-v"><br><br>
+                <span>Podaj rok do wyliczenia</span>
+                <input type="number" name="n-year" id="year-6" value="" class="input-ny">
                 <input type="submit" id="submit-button" value="Zatwierdź">
             </div>
             <!--   Wczytywanie z pliku (może)    -->
@@ -43,11 +45,16 @@
         <div id="d-2">
             <!--   Wyniki    -->
             <div id="d-2-1">
-                <span id="wyniki-temp"></span>
+                <div id="polynomial-div">
+                    <span id="polynomial"></span>
+                </div>
+                <div id="new-year-div">
+                    <span id="result"></span>
+                </div>
             </div>
             <!--   Wykres (może)    -->
             <div id="d-2-2">
-                $$f(x) = 2.3\cdot x^2 - 1.1x + 3$$
+                <iframe src="https://www.desmos.com/calculator/tcvmmz1ydn?embed" width="100%" height="100%" style="border: 1px solid #ccc" frameborder=0></iframe>
             </div>
         </div>
     </main>
