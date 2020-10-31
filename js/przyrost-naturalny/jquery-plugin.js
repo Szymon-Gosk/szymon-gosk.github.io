@@ -47,7 +47,7 @@ $(document).ready(function() {
         let b = [];
 
         b[0] = values[0][1];
-
+    
         for(let k = 1; k <= N-1; k++) {
 
             let sum = values[0][1];
@@ -68,18 +68,22 @@ $(document).ready(function() {
             b[k] = (values[k][1] - sum)/denominator;
         }
 
-        // Wielomian(y)
+        // Wielomian Newtona
 
         let polynomial = "P(x) = " + b[0];
+        let polynomial_graph = "" + b[0];
 
         for(let k = 1; k <= N-1; k++) {
             if(b[k] < 0) {
                 polynomial = polynomial + " - " + Math.abs(b[k]);
+                polynomial_graph = polynomial_graph + " - " + Math.abs(b[k]);
             } else {
                 polynomial = polynomial + " + " + b[k];
+                polynomial_graph = polynomial_graph + " + " + b[k];
             }
             for(let i = 0; i <= k-1; i++) {
                 polynomial = polynomial + "(x - " + values[i][0] + ")";
+                polynomial_graph = polynomial_graph + "*(x - " + values[i][0] + ")";
             }
         }
 
@@ -102,6 +106,43 @@ $(document).ready(function() {
         P = Math.round(P * 100) / 100;
 
         $('#result').html(P);
+
+        // Wykres
+
+        // TODO
+
+        var offsetY_up = 0;
+        var offsetY_down = 0;
+        var offsetX_left = 0;
+        var offsetX_right = 0;
+
+        var board = JXG.JSXGraph.initBoard('jxgbox', {boundingbox:[-5000,5000,5000,-5000], axis:true});
+
+        // Macro function plotter
+        function addCurve(board, func, atts) {
+            return board.create('functiongraph', [func], atts);
+        }
+
+        // Simplified plotting of function
+        function plot(func, atts) {
+            if (atts==null) {
+                return addCurve(board, func, {strokewidth:2});
+            } else {
+                return addCurve(board, func, atts);
+            }
+        }
+
+        let func = 'function f(x) { ' +
+            '   return ' + polynomial_graph + '; ' +
+            '} ' +
+            'c = plot(f);';
+
+        // Usage of the macro
+        function doIt() {
+            eval(func);
+        }
+
+        doIt();
 
     });
 

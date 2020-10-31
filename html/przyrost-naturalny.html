@@ -5,6 +5,9 @@
     <meta http-equiv="X-Ua-Compatible" content="IE=edge,chrome=1" />
     <title>Przyrost Naturalny | Algorytmy Numeryczne</title>
     <link rel="stylesheet" href="../css/przyrost-naturalny.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/jsxgraph@1.1.0/distrib/jsxgraph.css" />
+    <script type="text/javascript" charset="UTF-8"
+            src="https://cdn.jsdelivr.net/npm/jsxgraph@1.1.0/distrib/jsxgraphcore.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -64,9 +67,10 @@
                 </div>
             </div>
 
-            <!--   Wykres (może)    -->
+            <!--   Wykres    -->
             <div id="d-2-2">
-                <iframe src="https://www.desmos.com/calculator/tcvmmz1ydn?embed" width="100%" height="100%" style="border: 1px solid #ccc" frameborder=0></iframe>
+                <div id="jxgbox" class="jxgbox" style="width:100%; height:100%">
+                </div>
             </div>
         </section>
     </main>
