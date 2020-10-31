@@ -139,6 +139,7 @@ $(document).ready(function() {
 
         // Usage of the macro
         function doIt() {
+            console.log(':)');
             eval(func);
         }
 
