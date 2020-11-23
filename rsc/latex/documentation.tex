@@ -38,14 +38,21 @@ Niniejszy dokument stanowi dokumentacje wszystkich części projektu przedmiotu 
 Dokument ten jest również podsumowaniem pracy członków zespołu \textbf{1.1}, w którego skład wchodzą \textbf{Szymon Gosk}, \textbf{Damian Górski} i \textbf{Niuta Godlewska}. Członkowie zespołu wspólnie oświadczają, iż projekt był realizowany przez każdego z nich w równym stopniu zaangażowania. \\
 
 \id
-Zgodnie z wymaganiami, kod programów został umieszczony w niniejszym dokumencie, jednak dla przejrzystości i wygody czytającego zaleca się zapoznianie się z tym samym kodem na repozytorium projektu: \textcolor{blue}{\href{https://github.com/Szymon-Gosk/szymon-gosk.github.io}{https://github.com/Szymon-Gosk/szymon-gosk.github.io}} \\
+\bl{Kod wszystkich algorytmów} można znaleźć na repozytorium projektu:
+\begin{center}
+\textcolor{blue}{\href{https://github.com/Szymon-Gosk/szymon-gosk.github.io}{https://github.com/Szymon-Gosk/szymon-gosk.github.io}}
+\end{center}
+Kod umieszczony w tym dokumencie stałby się nieczytelny, tak więc - z uwagi na wygodę czytającego - zachęcamy do zapoznania się z programem na stronie zamieszczonej powyżej. \\
 
 \id
-Zaimplementowany projekt można znaleźć pod adresem: \textcolor{blue}{\href{https://szymon-gosk.github.io/}{https://szymon-gosk.github.io/}}
+Zaimplementowany projekt można znaleźć pod adresem: 
+\begin{center}
+\textcolor{blue}{\href{https://szymon-gosk.github.io/}{https://szymon-gosk.github.io/}}
+\end{center}
 
 \section{Interpolacja wielomianowa : Przyrost naturalny}
 
-\subsection{Opis}
+\subsection{Opis metod obliczeniowych}
 
 \textbf{Zadanie}: Program, który oszacuje przyrost naturalnyna świecie w przyszłości. Węzły mają przedstawiać przyrost naturalny zmieniający się wczasie. \\
 
@@ -67,7 +74,7 @@ która pozwala oszacować wartości dla argumentów spoza zbioru danych. \\
 \id
 Współczynniki $b_k$ można uzyskać korzystając z poniższego wzoru: \\
 
-$b_k = \left( \frac{b_k \ - \ \sum\limits_{i=0}^{k-1}\left( b_i\prod\limits_{j=0}^{i-1}(x_k-x_j) \right)}{\prod\limits_{i = 0}^{k-1}(x_k - x_i)} \right)$ \\
+$b_k = \left( \frac{y_k \ - \ \sum\limits_{i=0}^{k-1}\left( b_i\prod\limits_{j=0}^{i-1}(x_k-x_j) \right)}{\prod\limits_{i = 0}^{k-1}(x_k - x_i)} \right)$ \\
 
 \id
 \bl{Przykład:} Dany jest następujący zbiór danych: \\
@@ -81,7 +88,7 @@ $b_0 = 6503$
 
 $b_1 = 78.2$
 
-$b_2 = -0.58$
+$b_2 = -0.58$ \\
 
 \id
 przez co uzyskujemy wielomian w postaci: \\
@@ -187,67 +194,117 @@ Rozwiązaniem tego układu dla poszczególnych $a_i$ jest: \\
 $a_i = \sum\limits_{j=0}^{i}b_j\el{i}{j}$ \\
 
 \id
-Przy wyznaczaniu współczynników $\lambda$ posłużymy się zbiorem kombinacji z $i$ po $j$, oznaczonym jako $\mathbb{C}_i^j$: \\
-
-$\el{i}{j} = (-1)^{(i+j)}\cdot \left( \sum\limits_{K \in \mathbb{C}_i^j} \ \prod\limits_{k \in K} \left( x_k \right) \right)$ \\
+Do wyznaczenia wzoru na współczynniki $\lambda$ posłużymy się kombinacjami. Niech zbiór $X$ będzie zbiorem współczynników $x_i$, tzn. $X = \{ x_0, x_1, ... , x_n\}$. Dodatkowo niech $X_i$ oznacza zbiór pierwszych $i$ współczynników zbioru \\ $X$: $X_i = \{x_1, x_2, ..., x_i \}$ \\
 
 \id
-co daje nam wzór ogólny na $a_i$: \\
+Niech $C_j^i$ będzie zbiorem kombinacji o długości $j$ ze zbioru $X_i$: \\
 
-$a_i = \sum\limits_{j=0}^{i} \left( (-1)^{(i+j)}\cdot b_j\left( \sum\limits_{K \in \mathbb{C}_j^i} \ \prod\limits_{k \in K} \left( x_k \right) \right) \right)$ \\
-
-\id
-Teraz możemy zapisać wzór wielomianu w postaci ogólnej: \\
-
-$P(x) = \sum\limits_{i=0}^{n} \left( x^i\sum\limits_{j=0}^{i} \left( (-1)^{(i+j)}\cdot b_j\left( \sum\limits_{K \in \mathbb{C}_j^i} \ \prod\limits_{k \in K} \left( x_k \right) \right) \right) \right)$ \\
+$C_j^i = \binom{X_i}{j}$ \\
 
 \id
-\bl{Przykład:} Załóżmy, że mamy wielomian w postaci: \\
+Moc zbioru $C_j^i$ wyraża się przez $\vert C_j^i\vert = \binom{i}{j}$. Poniżej przedstawimy kilka kluczowych własności tego zbioru. \\
 
-$P(x) = b_0 + b_1(x-x_0) + b_2(x-x_0)(x-x_1) + b_3(x-x_0)(x-x_1)(x-x_2)$ \\
+\id
+Zbiór $C_j^i$ istnieje dla negatywnych wartości - przesłanka mówiąca za tym to fakt, że funkcja $\binom{i}{j} = \frac{\Gamma (i+1)}{\Gamma (j+1) \Gamma (i-y+1 )}$ jest zdefiniowana dla ujemnych wartości. \\
+
+\id
+Dodatkowo $\fa{ n\in \mathbb{N}}\fa{\alpha \in \mathbb{Z}^{-}}C^n_\alpha = \varnothing$ \ and \ $\vert C_\alpha^n\vert = 0$ \\
+
+\id
+Zdefiniowawszy powyższe rzeczy, lambdę możemy otrzymać ze wzoru: \\
+
+$\el{i}{j} = (-1)^{(i+j)}\cdot \left( \sum\limits_{K \in C^j_{j-i}} \ \prod\limits_{x_k \in K} \left( x_k \right) \right)$ \\
 
 \newpage
 
 \id
-Zapisujemy równanie liniowe z uzupełnionymi, wyliczonymi według wzoru współczynnikami $\lambda$: \\
+co daje nam wzór ogólny na $a_i$: \\
+
+$a_i = \sum\limits_{j=0}^{i} \left( (-1)^{(i+j)}\cdot b_j\left( \sum\limits_{K \in C^j_{j-i}} \ \prod\limits_{x_k \in K} \left( x_k \right) \right) \right)$ \\
+
+\id
+Teraz możemy zapisać wzór wielomianu w postaci ogólnej: \\
+
+$P(x) = \sum\limits_{i=0}^{n} \left( x^i\sum\limits_{j=0}^{i} \left( (-1)^{(i+j)}\cdot b_j\left( \sum\limits_{K \in C^j_{j-i}} \ \prod\limits_{x_k \in K} \left( x_k \right) \right) \right) \right)$ \\
+
+\id
+\bl{Przykład:} Posłużymy się wielomian newtona z przykładu pierwszego: \\
+
+$P(x)=6503+78.2\cdot(x-2005)-0.58\cdot(x-2005)(x-2010)$ \\
+
+\id
+Najpierw zapiszemy macierz współczynników lambda dla tego przykładu: \\
 
 $
 \begin{pmatrix}
-1 & -x_0 & x_0x_1 & -x_0x_1x_2\\
-0 & 1 & -(x_0+x_1) & x_0x_1 + x_0x_2 + x_1x_2 \\
-0 & 0 & 1 & -(x_0+x_1+x_2)\\
-0 & 0 & 0 & 1 \\
+\el{0}{0} & \el{0}{1} & \el{0}{2} \\
+0 & \el{1}{1} & \el{1}{2} \\
+0 & 0 & \el{2}{2} &\\
+\end{pmatrix}
+$ \\
+
+\id
+Następnie, posługując się wcześniej zdefiniowanym zbiorem $C_j^i$, obliczamy: \\
+
+$C^0_0 = C^1_0 = C^2_0 = \{ \varnothing \}$ \\
+
+$C^1_1 = \{ \{x_0\} \}$ \\
+
+$C^2_2 = \{ \{x_0, x_1 \} \}$ \\
+
+$C^2_1 = \{ \{x_0\}, \{ x_1 \} \}$ \\
+
+\id
+Co pozwala obliczyć nam współczynniki lambda: \\
+
+$\el{0}{0} = \el{2}{2} = \el{1}{1} = \sum\limits_{K \in C^1_{0}} \ \prod\limits_{x_k \in K} \left( x_k \right) = \sum\limits_{K \in \{ \varnothing \}} \ \prod\limits_{x_k \in K} \left( x_k \right) = \prod\limits_{x_k \in \varnothing} \left( x_k \right) = 1$ \\
+
+
+$\el{0}{1} = -\sum\limits_{K \in C^1_{1}} \ \prod\limits_{x_k \in K} \left( x_k \right) =  -\sum\limits_{K \in \{ \{x_0\} \}} \ \prod\limits_{x_k \in K} \left( x_k \right) = -\prod\limits_{x_k \in \{x_0\}}x_k = -x_0 = -2005$ \\
+
+
+$\el{0}{2} = \sum\limits_{K \in C^2_{2}} \ \prod\limits_{x_k \in K} \left( x_k \right) =  \sum\limits_{K \in \{ \{x_0, x_1\} \}} \ \prod\limits_{x_k \in K} \left( x_k \right) = \prod\limits_{x_k \in \{x_0, x_1\}}x_k = x_0x_1 = 4030050$ \\
+
+
+$\el{1}{2} = -\sum\limits_{K \in C^3_{2}} \ \prod\limits_{x_k \in K} \left( x_k \right) = -\sum\limits_{K \in \{ \{x_0\}, \{x_1\} \}} \ \prod\limits_{x_k \in K} \left( x_k \right) = -\left( \prod\limits_{x_k \in \{x_0\}}x_k + \prod\limits_{x_k \in \{x_1\}}x_k \right) = -(x_0 + x_1) = -4015$ \\
+
+
+
+\id
+Zapisujemy równanie liniowe z wyliczonymi współczynnikami $\lambda$: \\
+
+$
+\begin{pmatrix}
+1 & -2005 & 4030050 \\
+0 & 1 & -4015 \\
+0 & 0 & 1 &\\
 \end{pmatrix}
 \begin{pmatrix}
-b_0 \\
-b_1 \\
-b_2 \\
-b_3 \\
+6503 \\
+78.2 \\
+-0.58 \\
 \end{pmatrix}
 =
 \begin{pmatrix}
 a_0 \\
 a_1 \\
 a_2 \\
-a_3 \\
 \end{pmatrix}
 $ \\
 
 \id
 Z czego otrzymujemy: \\
 
-$a_0 = b_0 - b_1x_0 + b_2x_0x_1 - b_3x_0x_1x_2$ \\
+$a_0 = 6503 - 2005\cdot 78.2 - 0.58\cdot 4030050 = -2487717$ \\
 
-$a_1 = b_1 - b_2(x_0 + x_1) + b_3(x_0x_1 + x_0x_2 + x_1x_2)$ \\
+$a_1 = 78.2 + 4015\cdot 0.58 = 2406.9$ \\
 
-$a_2 = b_2 - b_3(x_0 + x_1 + x_2)$ \\
-
-$a_3 = b_3$ \\
+$a_2 = -0.58$ \\
 
 \id
-A więc: \\
+A następnie podstawiając otrzymujemy poprawny wielomian w postaci ogólnej: \\
 
-$P(x) = (b_0 - b_1x_0 + b_2x_0x_1 - b_3x_0x_1x_2) + x(b_1 - b_2(x_0 + x_1) + b_3(x_0x_1 + x_0x_2 + x_1x_2)) + x^2(b_2 - b_3(x_0 + x_1 + x_2)) + x^3b_3$ \\
+$P(x) = -0.58x^2 + 2406.9x - 2487717$
 
 \subsection{Opis implementacji algorytmu}
 
@@ -259,10 +316,13 @@ Pierwszym elementem algorytmu jest wyliczenie współczynników $b$. Program obl
 
 
 \id
-Po obliczeniu współczynników $b$, program tworzy \textit{String}, w którym zawiera dane współczynniki, wartości $x_i$ i zwraca \textit{String} zawierający postać Newtona wielomianu. \\
+Po obliczeniu współczynników $b$, program tworzy \textit{String}, w którym zawiera dane współczynniki, wartości $x_i$ i zwraca \textit{String} zawierający postać Newtona wielomianu konkatenując współczynniki z nazwiasami i wartościami $x_i$. \\
 
 \id
-Korzystając z powstałego wielomianu program pobiera argument wpisaną przez użytkownika i wylicza wartośc wielomianu dla tego argumentu.
+Korzystając z powstałego wielomianu program pobiera argument wpisany przez użytkownika i wylicza wartośc wielomianu dla tego argumentu. \\
+
+\id
+Z racji na skomplikowanie algorytmu przekształcania postaci Newtona w postać ogólną, implementacja została pominięta, a metoda zostawiona w dokumencie jako ciekawostka.
 
 \subsection{Struktury danych i struktura programu}
 
@@ -275,183 +335,51 @@ Dodatkowo przeprowadzane są operacje na liczbach - \textit{float} - a także, w
 \id
 Struktura skryptu obliczeniowego odpowiada warstwie teoretycznej implementacji - tj. kolejnośc wykowywanych zadań w jednym skrypcie jest taka sama jak w sekcji \textbf{2.1} oraz \textbf{2.2}. \\
 
+\id
+Wykorzystane zostały biblioteki KaTeX - do tworzenia tekstu matematycznego - i JsXGraph do tworzenia wykresów.
+
 \subsection{Program}
 
 \id
 Poniżej zostały zaprezentowane przykłady działania programu dla różnych przypadków: \\
 
-\textbf{TODO TODO TODO TODO}
+\begin{center}
+\includegraphics[width=1\textwidth]{proj1sc1.jpg} \\
+\end{center} 
+
+\begin{center}
+\includegraphics[width=1\textwidth]{proj1sc2.jpg} \\
+\end{center} 
+
+\begin{center}
+\includegraphics[width=1\textwidth]{proj1sc3.jpg} \\
+\end{center} 
+
+\begin{center}
+\includegraphics[width=1\textwidth]{proj1sc4.jpg} \\
+\end{center} 
 
 \subsection{IO (wejście-wyjście)}
 
+\id
+Wejściowe dane w programie są podawane w kontenerach typu \textit{input}: \\
 
+\begin{lstlisting}
+<input type="number" (...) class="input-v">
+\end{lstlisting} 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\id
+I pobierane przez program w skrypcie \textit{JQuery} po naciśnięciu przycisku. Akceptowane są tylko wartości liczbowe, które mimo wszystko przechodzą do programu jako \textit{String} - skrypt zamienia je po ich wprowadzeniu na wartości liczbowe. \\
+
+\id
+Program sprawdza, czy podano poprawne dane, tj. czy liczba podanych lat i wartości zgadza się, czy nie pozostawiono jednego z pól pustego, czy podano wartość do wyliczenia. Jeśli znaleziony zostanie błąd, program wyświetli odpowiedni komunikat w kontenerze. \\
+
+\id
+Dane wyjściowe programu to wartości $String$ zawierające wzór wielomianu - wzór użyty do wyświetlenia wielomianu jest renderowany przez bibliotekę $KaTeX$ na podstawie "brzydkiego", wyliczonego wzoru. Program na podstawie "brzydkiego" wzoru generuje również wykres funkcji przez bibliotekę JsXGraph. Dodatkowo pojawia się wyliczona wartość aproksymacji dla podanego roku. 
 
 \section{Projekt nr 2}
 
 \section{Projekt nr 3}
 
-\section{Projekt nr 4}
-
-\section{Tekst kodu programów}
-
-\subsection{Interpolacja wielomianowa : Przyrost naturalny}
-
-\begin{lstlisting}
-$(document).ready(function() {
-
-    // przycisk 'Zatwierdz'
-    $('#submit-button').click(function() {
-
-        // inicjalizacja zmiennych
-        let inputs = [];
-        let years = [];
-        let empty = 0;
-
-        // Zebranie wartosci z inputow
-        $('.input-y').each(function () {
-            if($(this).val() !== "") {
-                years.push($(this).val());
-            }
-
-        });
-
-        $('.input-v').each(function () {
-            if($(this).val() !== "") {
-                inputs.push($(this).val());
-            }
-        });
-
-        // Sprawdzenie czy sa przynajmniej 3 lata TODO
-        if(empty > 2) {
-
-        }
-
-        // zamiana stringosw na inty
-        let values = [];
-        inputs = inputs.map(x => +x);
-        years = years.map(x => +x);
-
-        for (let i = 0; i < inputs.length; i++) {
-            let temp = [];
-            temp[0] = years[i];
-            temp[1] = inputs[i];
-            values[i] = temp
-        }
-
-        // values[X][0] - X-th year       (x)
-        // values[X][1] - X-th value      (y)
-        let N = values.length;
-        let b = [];
-
-        b[0] = values[0][1];
-    
-        for(let k = 1; k <= N-1; k++) {
-
-            let sum = values[0][1];
-            let denominator = 1;
-
-            for(let i = 1; i <= k-1; i++) {
-                let product = 1;
-                for(let j = 0; j < i; j++) {
-                    product *= (values[k][0] - values[j][0]);
-                }
-                sum += b[i]*product;
-            }
-
-            for(let i = 0; i <= k-1; i++) {
-                denominator *= (values[k][0] - values[i][0]);
-            }
-
-            b[k] = (values[k][1] - sum)/denominator;
-        }
-
-        // Wielomian Newtona
-
-        let polynomial = "P(x) = " + b[0];
-        let polynomial_graph = "" + b[0];
-
-        for(let k = 1; k <= N-1; k++) {
-            if(b[k] < 0) {
-                polynomial = polynomial + " - " + Math.abs(b[k]);
-                polynomial_graph = polynomial_graph + " - " + Math.abs(b[k]);
-            } else {
-                polynomial = polynomial + " + " + b[k];
-                polynomial_graph = polynomial_graph + " + " + b[k];
-            }
-            for(let i = 0; i <= k-1; i++) {
-                polynomial = polynomial + "(x - " + values[i][0] + ")";
-                polynomial_graph = polynomial_graph + "*(x - " + values[i][0] + ")";
-            }
-        }
-
-        $("#polynomial").html(polynomial);
-
-        // Wyliczenie
-
-        let P = b[0];
-        let x = parseInt($('#year-6').val());
-
-        for (let k = 1; k <= N - 1; k++) {
-            let ingredient = b[k];
-            for (let i = 0; i <= k - 1; i++) {
-                ingredient *= (x - values[i][0]);
-                polynomial = polynomial + "(x - " + values[i][0] + ")";
-            }
-            P += ingredient;
-        }
-
-        P = Math.round(P * 100) / 100;
-
-        $('#result').html(P);
-
-        // Wykres
-
-        // TODO
-
-        var board = JXG.JSXGraph.initBoard('jxgbox', {boundingbox:[-5000,5000,5000,-5000], axis:true});
-
-        // Macro function plotter
-        function addCurve(board, func, atts) {
-            return board.create('functiongraph', [func], atts);
-        }
-
-        // Simplified plotting of function
-        function plot(func, atts) {
-            if (atts==null) {
-                return addCurve(board, func, {strokewidth:2});
-            } else {
-                return addCurve(board, func, atts);
-            }
-        }
-
-        let func = 'function f(x) { ' +
-            '   return ' + polynomial_graph + '; ' +
-            '} ' +
-            'c = plot(f);';
-
-        // Usage of the macro
-        function doIt() {
-            console.log(':)');
-            eval(func);
-        }
-
-        doIt();
-
-    });
-
-});
-\end{lstlisting}
-
-\subsection{Projekt nr 2}
-
-\subsection{Projekt nr 3}
-
-\subsection{Projekt nr 4}
 
 \end{document}
