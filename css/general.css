@@ -120,3 +120,13 @@ aside footer {
     font-size: 25px;
     font-style: italic;
 }
+
+#repo-link {
+    text-decoration: none;
+    color:#8FFFFC;
+    font-size: 65%;
+}
+
+#repo-under {
+    text-decoration: underline;
+}
