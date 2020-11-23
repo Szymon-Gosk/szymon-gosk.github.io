@@ -1,9 +1,9 @@
 $(document).ready(function() {
 
-
-
     // przycisk 'Zatwierdź'
     $('#submit-button').click(function() {
+
+        $('#d-1-2').css('display', 'flex');
 
         // inicjalizacja zmiennych
         let inputs = [];
@@ -105,16 +105,11 @@ $(document).ready(function() {
 
         P = Math.round(P * 100) / 100;
 
-        $('#result').html(P);
+        $('#result').html('P(' + x + ') = ' + P);
 
         // Wykres
 
         // TODO
-
-        var offsetY_up = 0;
-        var offsetY_down = 0;
-        var offsetX_left = 0;
-        var offsetX_right = 0;
 
         var board = JXG.JSXGraph.initBoard('jxgbox', {boundingbox:[-5000,5000,5000,-5000], axis:true});
 
