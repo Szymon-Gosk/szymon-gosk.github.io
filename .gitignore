@@ -1,2 +1,7 @@
 *.iml
 .idea
+documentation.aux
+documentation.log
+documentation.out
+documentation.synctex.gz
+documentation.toc
