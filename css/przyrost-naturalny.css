@@ -157,8 +157,8 @@ main {
     align-items: center;
 }
 
-#polynomial-div {
-
+#polynomial, #result {
+    font-size: 80%;
 }
 
 #new-year-div {

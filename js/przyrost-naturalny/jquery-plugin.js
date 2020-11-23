@@ -104,7 +104,9 @@ $(document).ready(function() {
                 }
             }
 
-            $("#polynomial").html(polynomial);
+            $("#polynomial").html(katex.renderToString(polynomial, {
+                throwOnError: false,
+            }));
 
             // Wyliczenie
 
@@ -121,7 +123,9 @@ $(document).ready(function() {
 
             P = Math.round(P * 100) / 100;
 
-            $('#result').html('P(' + x + ') = ' + P);
+            $('#result').html(katex.renderToString('P(' + x + ') = ' + P, {
+                throwOnError: false,
+            }));
 
             // Wykres
 
