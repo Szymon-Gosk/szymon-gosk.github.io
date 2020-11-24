@@ -8,9 +8,13 @@ $(document).ready(function() {
         let yearsI = [];
         let x = parseInt($('#year-6').val());
         let isDataCorrect = true;
+        let noRepetitions = true;
 
         // Zebranie wartości z inputów
         $('.input-y').each(function () {
+            if($(this).val() !== "") {
+                noRepetitions = noRepetitions && !yearsI.includes($(this).val());
+            }
             yearsI.push($(this).val());
         });
 
@@ -19,7 +23,7 @@ $(document).ready(function() {
         });
 
         for(let i = 0; i < 5; i++) {
-            isDataCorrect = isDataCorrect &&
+            isDataCorrect = isDataCorrect && noRepetitions &&
                 !((inputsI[i] === "" && yearsI[i] !== "") || (inputsI[i] !== "" && yearsI[i] === ""));
         }
 

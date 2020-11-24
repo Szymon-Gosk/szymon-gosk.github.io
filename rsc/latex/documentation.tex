@@ -1,6 +1,7 @@
 \documentclass[a4paper,12pt]{article}
 \usepackage[T1]{fontenc}
 \usepackage{times}
+\usepackage{polski}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{graphicx}
@@ -57,7 +58,7 @@ Zaimplementowany projekt można znaleźć pod adresem:
 \textbf{Zadanie}: Program, który oszacuje przyrost naturalnyna świecie w przyszłości. Węzły mają przedstawiać przyrost naturalny zmieniający się wczasie. \\
 
 \id
-Metoda numeryczna użyta w tym zadaniu to \textbf{metoda newtona}. Początkowo posiadamy zbiór $n+1$ danych: \\
+Metoda numeryczna użyta w tym zadaniu to \textbf{metoda Newtona}. Początkowo posiadamy zbiór $n+1$ danych: \\
 
 $\{ (x_0, y_0), (x_1, y_1), ..., (x_n, y_n) \}$ \\
 
@@ -228,7 +229,7 @@ Teraz możemy zapisać wzór wielomianu w postaci ogólnej: \\
 $P(x) = \sum\limits_{i=0}^{n} \left( x^i\sum\limits_{j=0}^{i} \left( (-1)^{(i+j)}\cdot b_j\left( \sum\limits_{K \in C^j_{j-i}} \ \prod\limits_{x_k \in K} \left( x_k \right) \right) \right) \right)$ \\
 
 \id
-\bl{Przykład:} Posłużymy się wielomian newtona z przykładu pierwszego: \\
+\bl{Przykład:} Posłużymy się wielomian Newtona z przykładu pierwszego: \\
 
 $P(x)=6503+78.2\cdot(x-2005)-0.58\cdot(x-2005)(x-2010)$ \\
 
