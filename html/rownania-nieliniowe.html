@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-Ua-Compatible" content="IE=edge,chrome=1" />
     <title>Równania Nieliniowe | Algorytmy Numeryczne</title>
+    <link rel="stylesheet" href="../css/general.css">
     <link rel="stylesheet" href="../css/rownania-nieliniowe.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/jsxgraph@1.1.0/distrib/jsxgraph.css" />
     <script type="text/javascript" charset="UTF-8"
@@ -28,6 +29,57 @@
     <script src="https://kit.fontawesome.com/f6b215a682.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    <header>
+        <a id="back-link" href="./../index.html"><i class="fas fa-angle-left" style="font-size: 30px;"></i></a>
+        <span>Równania nieliniowe</span>
+    </header>
 
+    <main>
+        <section id="main-content">
+            <!--   Labele do danych    -->
+            <div id="d-1-1">
+                <div id="content-1-1">
+                    <div id="in-summary">
+                        <span>Podaj lewy kraniec: </span>
+                        <input type="number" name="number1" id="number1" value="" class="input-ny">
+
+                        <span>Podaj prawy kraniec: </span>
+                        <input type="number" name="number2" id="number2" value="" class="input-ny">
+
+                        <span>Podaj epsilon: </span>
+                        <input type="number" name="number2" id="number3" value="" class="input-ny">
+
+                        <input class="submit-btn" type="submit" id="submit-button" value="Zatwierdź">
+                    </div>
+                </div>
+            </div>
+
+            <div id="d-2-1">
+                <span id="error"></span>
+            </div>
+
+            <!--   Wyniki    -->
+            <div id="d-1-2">
+                <div id="output1">
+                    <span id="result1"></span>
+                </div>
+                <div id="output2">
+                    <span id="result2"></span>
+                </div>
+            </div>
+
+            <div id="d-2-2">
+                <span id="aux0"></span>
+                <span id="aux1"></span>
+                <span id="aux2"></span>
+                <span id="aux3"></span>
+            </div>
+
+        </section>
+    </main>
+
+    <footer>
+        Algorytymy numeryczne
+    </footer>
 </body>
 </html>
